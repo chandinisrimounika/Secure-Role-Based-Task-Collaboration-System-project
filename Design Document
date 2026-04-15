@@ -1,0 +1,219 @@
+# 🛡️ Design Document
+
+## Secure Role-Based Task & Collaboration System
+
+---
+
+# 📌 1. Introduction
+
+The **Secure Role-Based Task & Collaboration System** is a full-stack web application designed to manage tasks efficiently within a team environment. It ensures secure access using authentication and role-based authorization while providing a modern dashboard for tracking progress.
+
+---
+
+# 🎯 2. Objective
+
+* To build a secure task management system
+* To implement role-based access control
+* To provide a user-friendly dashboard for tracking tasks
+* To enable collaboration between admin and users
+
+---
+
+# 👥 3. Users & Roles
+
+| Role  | Description                                  |
+| ----- | -------------------------------------------- |
+| ADMIN | Creates, assigns, updates, and deletes tasks |
+| USER  | Views assigned tasks and updates status      |
+
+---
+
+# 🧩 4. System Overview
+
+The system consists of two main components:
+
+* **Frontend (React)** → User Interface
+* **Backend (Spring Boot)** → Business Logic & Security
+
+---
+
+# 🏗️ 5. System Architecture
+
+```id="6j1e2p"
+Frontend (React)
+       ↓
+REST APIs (Axios)
+       ↓
+Spring Boot Backend
+       ↓
+Service Layer
+       ↓
+Repository Layer (JPA)
+       ↓
+Database (MySQL)
+```
+
+---
+
+# 🛠️ 6. Technology Stack
+
+## Frontend
+
+* React.js
+* Axios
+* React Router
+* CSS
+* React Icons
+
+## Backend
+
+* Spring Boot
+* Spring Security
+* JWT Authentication
+* Hibernate (JPA)
+* MySQL / H2
+
+---
+
+# 📁 7. Module Design
+
+## 🔐 Authentication Module
+
+* Login using email and password
+* JWT token generation
+* Token validation for API access
+
+---
+
+## 👤 User Module
+
+* Stores user details (email, password, role)
+* Role-based access control
+
+---
+
+## 📋 Task Module
+
+* Create tasks
+* Assign tasks to users
+* Update task status
+* Delete tasks
+
+---
+
+## 📊 Dashboard Module
+
+* Displays task statistics
+* Shows tasks in Kanban board format
+* Groups tasks by status
+
+---
+
+## 🔍 Search Module
+
+* Live search filtering
+* Search based on title and description
+
+---
+
+## 🔔 Notification Module
+
+* Displays count of pending tasks
+* Updates dynamically
+
+---
+
+# 🧠 8. Database Design
+
+## User Table
+
+| Field    | Type   |
+| -------- | ------ |
+| id       | Long   |
+| email    | String |
+| password | String |
+| role     | String |
+
+---
+
+## Task Table
+
+| Field         | Type   |
+| ------------- | ------ |
+| id            | Long   |
+| title         | String |
+| description   | String |
+| status        | String |
+| priority      | String |
+| deadline      | Date   |
+| assigned_user | String |
+
+---
+
+# 🔄 9. Workflow
+
+1. User logs in
+2. JWT token is generated
+3. Token stored in localStorage
+4. User requests tasks
+5. Backend validates token
+6. Tasks are returned based on assigned user
+7. User updates task status
+8. Dashboard updates dynamically
+
+---
+
+# 🔐 10. Security Design
+
+* JWT-based authentication
+* Protected API endpoints
+* Role-based authorization
+* Secure password handling
+
+---
+
+# 🎨 11. UI Design
+
+* Sidebar navigation
+* Topbar with search and profile
+* Kanban board layout
+* Task cards with priority and status
+* Responsive design
+
+---
+
+# ⚠️ 12. Challenges Faced
+
+* Managing role-based UI rendering
+* Handling layout overlapping issues
+* Ensuring real-time UI updates
+* API integration and error handling
+
+---
+
+# 🚀 13. Future Enhancements
+
+* Drag and drop functionality
+* Real-time updates (WebSockets)
+* Email notifications
+* File attachments
+* Team chat
+
+---
+
+# 📈 14. Conclusion
+
+This project demonstrates a complete full-stack implementation with:
+
+* Secure authentication
+* Role-based access control
+* Modern UI design
+* Scalable architecture
+
+It reflects real-world application development practices.
+
+---
+
+# 👩‍💻 15. Author
+
+**Chandini Sri Mounika**
