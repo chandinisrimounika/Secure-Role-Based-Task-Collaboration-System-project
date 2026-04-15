@@ -20,7 +20,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import com.example.taskmanager.security.JwtFilter;
 
 @Configuration
-@EnableMethodSecurity // ✅ Enables @PreAuthorize
+@EnableMethodSecurity
 public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
@@ -53,8 +53,6 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
-
-                // 🔥 Everything else secured
                 .anyRequest().authenticated()
             )
 
@@ -73,18 +71,23 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // 🌐 CORS config
+    
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(List.of("http://localhost:3000"));
+        // ✅ Allow both local + deployed frontend
+        config.setAllowedOriginPatterns(List.of(
+            "http://localhost:3000",
+            "https://chandini-task-frontend.onrender.com"
+        ));
+
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
 
-        // 🔥 Important for Authorization header
+        // 🔥 Important for JWT token
         config.setExposedHeaders(List.of("Authorization"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
