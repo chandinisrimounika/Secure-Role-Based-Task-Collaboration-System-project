@@ -1,15 +1,15 @@
 # Use Java 17
-FROM openjdk:17-jdk
+FROM eclipse-temurin:17-jdk
 
 # Set working directory
 WORKDIR /app
 
-# Copy project files
+# Copy all files
 COPY . .
 
-# Build the project
+# Build project
 RUN chmod +x mvnw
 RUN ./mvnw clean install -DskipTests
 
-# Run the app
+# Run application
 CMD ["java", "-jar", "target/*.jar"]
